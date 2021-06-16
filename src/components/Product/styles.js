@@ -15,19 +15,29 @@ export default makeStyles(() => ({
         "0 0 1px 0 rgb(8 11 14 / 6%), 0 16px 16px -1px rgb(8 11 14 / 10%)",
     },
   },
+  cartMedia: {
+    position: "relative",
+  },
+  btnWishList: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+  },
   media: {
     height: 0,
     paddingTop: "100%", // 16:9
   },
   cardName: {
+    textAlign: "center",
     textOverflow: "ellipsis",
     overflow: "hidden",
     whiteSpace: "nowrap",
     fontWeight: "bold",
     transition: "all 1s ease-out",
+    textTransform: "uppercase",
   },
   cardPrice: {
-    fontWeight: "bold",  
+    fontWeight: "bold",
     color: "red",
     textAlign: "center",
   },

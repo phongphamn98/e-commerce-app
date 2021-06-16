@@ -12,8 +12,14 @@ import {
 import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../Assets/commerce.png";
 import useStyles from "./navStyles";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const carts = useSelector((state) => state.carts);
+  const wishList = useSelector((state) => state.wishList);
+
   const classes = useStyles();
   return (
     <>
@@ -30,8 +36,15 @@ const Navbar = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
+            {wishList.length != 0 ? (
+              <IconButton aria-label="Show cart items" color="inherit">
+                <Badge badgeContent={wishList.length} color="secondary">
+                  <FavoriteBorderIcon />
+                </Badge>
+              </IconButton>
+            ) : null}
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={carts.length} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
