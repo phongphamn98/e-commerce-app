@@ -1,17 +1,16 @@
-import React from "react";
 import Grid from "@material-ui/core/Grid";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../../redux/actions/productActions";
 import Product from "../Product/Product";
 import useStyles from "./productsStyles";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { updateProducts } from "../../actions";
 
 const Products = () => {
   const classes = useStyles();
 
   //lấy object từ state
-  const products = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.allProducts);
+  const { products } = allProducts;
   //bắn api lấy data về
   const fetchData = async () => {
     const res = await fetch(
@@ -25,13 +24,12 @@ const Products = () => {
     const data = fetchData();
     data.then((res) => {
       const newData = res.data.map((item) => ({ ...item, wishList: false }));
-      dispatch(updateProducts(newData));
+      dispatch(setProducts(newData));
     });
   }, []);
 
   return (
     <main className={classes.content}>
-      <div className={classes.toolbar} />
       <Grid container justify="center" spacing={4}>
         {products.map((product, index) => {
           return (

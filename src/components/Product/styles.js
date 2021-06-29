@@ -8,6 +8,7 @@ export default makeStyles(() => ({
     transition: "all 0.25s ease-out",
     boxShadow: "none",
     border: "1px solid #e2e2cd",
+    textDecoration: "none",
     "&:hover": {
       color: "blue",
       transform: "translateZ(0) scale(1.008)",
@@ -25,6 +26,7 @@ export default makeStyles(() => ({
   },
   media: {
     height: 0,
+    backgroundSize: "contain",
     paddingTop: "100%", // 16:9
   },
   cardName: {
@@ -51,5 +53,8 @@ export default makeStyles(() => ({
     "&:hover": {
       backgroundColor: "#dc1f1f",
     },
+  },
+  link: {
+    textDecoration: "none",
   },
 }));

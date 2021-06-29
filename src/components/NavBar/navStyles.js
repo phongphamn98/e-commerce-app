@@ -1,16 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   title: {
     display: "flex",
     alignItems: "center",
-    //  flexGrow: 1,
+    flexGrow: 1,
+    textDecoration: "none",
+    color: "black",
   },
   image: {
     marginRight: "10px",
   },
   appBar: {
-    //  display: "flex",
+    borderBottom: "1px solid #ebedee",
     boxShadow: "none",
   },
   grow: {
