@@ -2,11 +2,12 @@ import React from "react";
 import OrderTab from "./OrderTab";
 import useStyles from "./tab";
 import ScrollTo from "react-scroll-into-view";
+import PhongDiv from "../../../General/PhongDiv";
 
 const ProductOrderTab = () => {
   const classes = useStyles();
   return (
-    <div className={classes.menu}>
+    <PhongDiv className={classes.menu}>
       <ScrollTo selector={`#slideImage`}>
         <OrderTab text="Bộ sưu tập" />
       </ScrollTo>
@@ -21,7 +22,7 @@ const ProductOrderTab = () => {
       <ScrollTo selector={`#cart4`}>
         <OrderTab text="Đánh giá" />
       </ScrollTo>
-    </div>
+    </PhongDiv>
   );
 };
 

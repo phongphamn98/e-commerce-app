@@ -7,6 +7,7 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import useStyles from "./slideImageStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Media from "react-media";
 const SlideImage = ({ images }) => {
   const classes = useStyles();
 
@@ -47,7 +48,21 @@ const SlideImage = ({ images }) => {
           const { id, url } = item;
           return (
             <div key={id} className={classes.slide}>
-              <img src={url} alt="" />
+              <Media
+                queries={{
+                  small: "(max-width: 599px)",
+                  medium: "(min-width: 600px) and (max-width: 967px)",
+                  large: "(min-width: 968px)",
+                }}
+              >
+                {(matches) => (
+                  <img
+                    style={{ height: `${matches.small ? "50%" : "100%"}` }}
+                    src={url}
+                    alt=""
+                  />
+                )}
+              </Media>
             </div>
           );
         })}

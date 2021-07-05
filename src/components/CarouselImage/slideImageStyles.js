@@ -12,9 +12,9 @@ export default makeStyles(() => ({
     position: "relative",
     //  backgroundColor: "#edeff0",
     zIndex: 2,
-    "& img": {
-      height: "50%",
-    },
+    //  "& img": {
+    //    height: "50%",
+    //  },
   },
   arrowRight: {
     width: "4%",

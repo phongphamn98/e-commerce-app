@@ -30,13 +30,14 @@ export default makeStyles((theme) => ({
   selectSize: {
     textTransform: "uppercase",
     fontWeight: "600",
+    marginBottom: "30px",
   },
   sizeTable: {
     display: "grid",
     flexWrap: "wrap",
     gridTemplateColumns: "repeat(auto-fill, minmax(70px, 1fr))",
     borderLeft: "1px solid #ebedee",
-    margin: "15px 0",
+    margin: "15px 0 0 0",
   },
   size: {
     height: "40px",
@@ -61,22 +62,7 @@ export default makeStyles((theme) => ({
   color: {
     fontSize: "14px",
   },
-  btnOrder: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0px 10px",
-    paddingRight: 0,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    color: "white",
-    backgroundColor: "black",
-    cursor: "pointer",
-    flexGrow: 1,
-    //  "&:hover": {
-    //    color: "#767677",
-    //  },
-  },
+
   buttonArea: {
     display: "flex",
     justifyContent: "spacebetween",
@@ -95,10 +81,5 @@ export default makeStyles((theme) => ({
   },
   collections: {
     textTransform: "uppercase",
-  },
-  btnText: {
-    textOverflow: "ellipsis",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
   },
 }));

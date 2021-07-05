@@ -20,13 +20,13 @@ const Navbar = () => {
   const classes = useStyles();
   const wishList = useSelector((state) => state.allProducts.wishList);
   const carts = useSelector((state) => state.allProducts.carts);
-  useEffect(() => {
-    let count = 0;
-    for (let item of carts) {
-      count += item.qty;
-    }
-    setCountCart(count);
-  }, [carts, countCart]);
+  //   useEffect(() => {
+  //     let count = 0;
+  //     for (let item of carts.listProduct) {
+  //       count += item.qty;
+  //     }
+  //     setCountCart(count);
+  //   }, [carts.listProduct, countCart]);
 
   return (
     <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -61,7 +61,7 @@ const Navbar = () => {
             aria-label="Show cart items"
             color="inherit"
           >
-            <Badge badgeContent={countCart} color="secondary">
+            <Badge badgeContent={carts.totalItem} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

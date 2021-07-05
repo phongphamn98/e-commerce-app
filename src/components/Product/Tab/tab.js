@@ -10,6 +10,7 @@ export default makeStyles(() => ({
     top: "64px",
     background: "white",
     paddingTop: "20px",
+    zIndex: 1,
   },
   text: {
     textTransform: "uppercase",

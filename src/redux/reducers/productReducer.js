@@ -4,7 +4,11 @@ export const initialState = {
   products: [],
   wishList: [],
   product: {},
-  carts: [],
+  carts: {
+    listProduct: [],
+    totalCost: 0,
+    totalItem: 0,
+  },
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -23,27 +27,83 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return { ...state };
     }
     case ActionTypes.ADD_TO_CART: {
-      const inCart = state.carts.find((item) =>
+      const inCart = state.carts.listProduct.find((item) =>
         item._id === payload._id && item.size === payload.size ? true : false
       );
+
+      const newListCart = inCart
+        ? state.carts.listProduct.map((item) =>
+            item._id === payload._id && item.size === payload.size
+              ? { ...item, qty: item.qty + 1 }
+              : item
+          )
+        : [...state.carts.listProduct, { ...payload, qty: 1 }];
+      let cost = 0;
+      let count = 0;
+      for (let item of newListCart) {
+        cost += item.qty * item.price;
+        count += item.qty;
+      }
       return {
         ...state,
-        carts: inCart
-          ? state.carts.map((item) =>
-              item._id === payload._id && item.size === payload.size
-                ? { ...item, qty: item.qty + 1 }
-                : item
-            )
-          : [...state.carts, { ...payload, qty: 1 }],
+        carts: {
+          listProduct: newListCart,
+          totalCost: cost,
+          totalItem: count,
+        },
       };
     }
     case ActionTypes.REMOVE_FROM_CART: {
-      let newCart = state.carts.filter(
+      let newCart = state.carts.listProduct.filter(
         (prod) => prod._id !== payload._id || prod.size !== payload.size
       );
+      let cost = 0;
+      let count = 0;
+      for (let item of newCart) {
+        cost += item.qty * item.price;
+        count += item.qty;
+      }
       return {
         ...state,
-        carts: newCart,
+        carts: {
+          listProduct: newCart,
+          totalCost: cost,
+          totalItem: count,
+        },
+      };
+    }
+    case ActionTypes.CHANGE_QTY_PRODUCT: {
+      //tìm ra thằng cần thay đổi số lượng
+      const inCart = state.carts.listProduct.find((item) =>
+        item._id === payload.product._id && item.size === payload.product.size
+          ? true
+          : false
+      );
+
+      console.log("incart", payload.qty);
+
+      const newListCart = inCart
+        ? state.carts.listProduct.map((item) =>
+            item._id === payload.product._id &&
+            item.size === payload.product.size
+              ? { ...item, qty: payload.qty }
+              : item
+          )
+        : [...state.carts.listProduct];
+      console.log("newListCart", newListCart);
+      let cost = 0;
+      let count = 0;
+      for (let item of newListCart) {
+        cost += item.qty * item.price;
+        count += item.qty;
+      }
+      return {
+        ...state,
+        carts: {
+          listProduct: newListCart,
+          totalCost: cost,
+          totalItem: count,
+        },
       };
     }
     default:

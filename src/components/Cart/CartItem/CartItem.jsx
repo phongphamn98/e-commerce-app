@@ -2,16 +2,26 @@ import { Grid, IconButton, InputBase, withStyles } from "@material-ui/core";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import ClearIcon from "@material-ui/icons/Clear";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../../redux/actions/productActions";
+import formatMoney from "../../../General/formatMoney";
+import {
+  changeQtyProduct,
+  removeFromCart,
+} from "../../../redux/actions/productActions";
 import useStyles from "./CartItemStyles";
 const CartItem = ({ prod }) => {
   const dispatch = useDispatch();
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(prod.qty);
+
   const onChangeQty = (e) => {
     setQty(e.target.value);
+    dispatch(changeQtyProduct(prod, parseInt(e.target.value)));
   };
+
+  //   useEffect(() => {
+  //     setQty(prod.qty);
+  //   }, []);
 
   const classes = useStyles();
   return (
@@ -25,7 +35,7 @@ const CartItem = ({ prod }) => {
             <div className={classes.info}>
               <div className={classes.nameAndPrice}>
                 <div className={classes.name}>{prod.name}</div>
-                <div>{new Intl.NumberFormat().format(prod.price)}₫</div>
+                <div>{formatMoney(prod.price)}₫</div>
               </div>
               <div className={classes.color}>
                 <span>Non Dyed / Non Dyed / Non Dyed</span>

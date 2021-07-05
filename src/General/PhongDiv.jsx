@@ -12,10 +12,18 @@ const useStyles = ({
   maxwidth,
   flexdirection,
   margin,
-  flexGap,
-  fontsize, 
+  flexgap,
+  fontSize,
   lineheight,
-  fontweight
+  fontWeight,
+  backgroundcolor,
+  border,
+  boxsizing,
+  position,
+  flex,
+  flexbasis,
+  texttransform,
+  color,
 }) =>
   makeStyles((theme) => {
     return {
@@ -30,10 +38,18 @@ const useStyles = ({
         maxWidth: maxwidth,
         flexDirection: flexdirection,
         margin: margin,
-        gap: flexGap,
-        fontSize: fontsize,
+        gap: flexgap,
+        fontSize: fontSize,
         lineHeight: lineheight,
-        fontWeight: fontweight
+        fontWeight: fontWeight,
+        backgroundColor: backgroundcolor,
+        border: border,
+        boxSizing: boxsizing,
+        position: position,
+        flex: flex,
+        flexBasis: flexbasis,
+        textTransform: texttransform,
+        color: color,
       },
     };
   });

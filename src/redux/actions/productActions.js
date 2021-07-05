@@ -37,3 +37,11 @@ export const removeFromCart = (product) => ({
   type: ActionTypes.REMOVE_FROM_CART,
   payload: product,
 });
+
+export const changeQtyProduct = (product, qty) => ({
+  type: ActionTypes.CHANGE_QTY_PRODUCT,
+  payload: {
+    product: product,
+    qty: qty,
+  },
+});

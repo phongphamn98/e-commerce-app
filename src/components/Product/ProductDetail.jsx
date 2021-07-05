@@ -9,6 +9,7 @@ import InfomationArea from "./Detail/InfomationArea";
 import useStyles from "./productDetailStyles";
 import ProductOrderDetail from "./ProductOrderDetail/ProductOrderDetail";
 import ProductOrderTab from "./Tab/ProductOrderTab";
+import Media from "react-media";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -29,24 +30,35 @@ const ProductDetail = () => {
   }, []);
 
   return (
-    <div className={classes.content}>
-      {/* <CarouselImage /> */}
-      {/* <div className={classes.slideImage}>
-        
-      </div> */}
-      {!_.isEmpty(product) ? (
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={12} md={9} lg={9}>
-            <SlideImage images={product.poster} />
-            <ProductOrderTab />
-            <InfomationArea />
-          </Grid>
-          <Grid item xs={12} sm={12} md={3} lg={3}>
-            <ProductOrderDetail product={product} />
-          </Grid>
-        </Grid>
-      ) : null}
-    </div>
+    <Media
+      queries={{
+        small: "(max-width: 599px)",
+        medium: "(min-width: 600px) and (max-width: 959px)",
+        large: "(min-width: 960px)",
+      }}
+    >
+      {(matches) => (
+        <div className={classes.content}>
+          {!_.isEmpty(product) ? (
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={12} md={8} lg={8}>
+                <SlideImage images={product.poster} />
+                {matches.small || matches.medium ? (
+                  <ProductOrderDetail product={product} />
+                ) : null}
+                <ProductOrderTab />
+                <InfomationArea />
+              </Grid>
+              <Grid item xs={12} sm={12} md={4} lg={4}>
+                {matches.large ? (
+                  <ProductOrderDetail product={product} />
+                ) : null}
+              </Grid>
+            </Grid>
+          ) : null}
+        </div>
+      )}
+    </Media>
   );
 };
 
