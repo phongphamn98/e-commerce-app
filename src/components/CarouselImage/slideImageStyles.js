@@ -26,7 +26,6 @@ export default makeStyles(() => ({
     border: "1px solid",
     fontSize: "30px",
     cursor: "pointer",
-    margin: "0 20px",
     position: "absolute",
     right: 0,
     backgroundColor: "white",
@@ -41,16 +40,15 @@ export default makeStyles(() => ({
     border: "1px solid",
     fontSize: "30px",
     cursor: "pointer",
-    margin: "0 20px",
     backgroundColor: "white",
     position: "absolute",
   },
   indicators: {
-    width: "40px",
+    width: "20px",
     height: "0px",
     cursor: "pointer",
     border: "1px solid",
-    margin: "0 3px",
+    margin: "0 5px",
     marginBottom: "2px",
     "&.active": {
       borderBottom: "3px solid !important",
@@ -59,14 +57,15 @@ export default makeStyles(() => ({
     transition: "all .1s",
   },
   slideContainer: {
-    position: "relative",
+    //  position: "relative",
+    height: "100%",
     cursor: "pointer",
     "& .indicators": {
       position: "absolute",
       width: "100%",
       height: "44px",
       overflow: "hidden",
-      bottom: "30px",
+      bottom: "0px",
       alignItems: "flex-end",
       zIndex: 1,
       marginTop: "-100px !important",
@@ -74,11 +73,23 @@ export default makeStyles(() => ({
     },
     "&:hover": {
       "& .indicators img": {
-        height: "40px",
+        height: "20px",
       },
     },
-    "& .react-slideshow-container": {
+    "& .react-slideshow-container, .slide": {
       position: "relative",
+      height: "100%",
+    },
+    "&  .slide": {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
+    "& .images-wrap": {
+      height: "100%",
+    },
+    "& > div": {
+      height: "100%",
     },
   },
 }));

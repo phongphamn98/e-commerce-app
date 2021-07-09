@@ -8,66 +8,77 @@ import "react-slideshow-image/dist/styles.css";
 import useStyles from "./slideImageStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Media from "react-media";
+import PhongDiv from "../../General/PhongDiv";
 const SlideImage = ({ images }) => {
   const classes = useStyles();
 
-  const LongArrowRight = () => {
+  const LongArrowRight = (matches) => {
     return (
-      <div className={classes.arrowRight}>
+      <PhongDiv
+        margin={matches.small ? "0" : "0 20px"}
+        className={classes.arrowRight}
+      >
         <FontAwesomeIcon icon={faLongArrowAltRight} />
-      </div>
+      </PhongDiv>
     );
   };
 
-  const LongArrowLeft = () => {
+  const LongArrowLeft = (matches) => {
     return (
-      <div className={classes.arrowLeft}>
+      <PhongDiv
+        margin={matches.small ? "0" : "0 20px"}
+        className={classes.arrowLeft}
+      >
         <FontAwesomeIcon icon={faLongArrowAltLeft} />
-      </div>
+      </PhongDiv>
     );
   };
   return (
-    <div id="slideImage" className={classes.slideContainer}>
-      <Slide
-        nextArrow={LongArrowRight()}
-        prevArrow={LongArrowLeft()}
-        autoplay={false}
-        transitionDuration={400}
-        indicators={(i) => {
-          return (
-            <img
-              key={images[i].id}
-              className={classes.indicators}
-              src={images[i].url}
-              alt=""
-            />
-          );
-        }}
-      >
-        {images.map((item) => {
-          const { id, url } = item;
-          return (
-            <div key={id} className={classes.slide}>
-              <Media
-                queries={{
-                  small: "(max-width: 599px)",
-                  medium: "(min-width: 600px) and (max-width: 967px)",
-                  large: "(min-width: 968px)",
-                }}
-              >
-                {(matches) => (
+    <Media
+      queries={{
+        small: "(max-width: 599px)",
+        medium: "(min-width: 600px) and (max-width: 967px)",
+        large: "(min-width: 968px)",
+      }}
+    >
+      {(matches) => (
+        <div id="slideImage" className={classes.slideContainer}>
+          <Slide
+            prevArrow={LongArrowLeft(matches)}
+            nextArrow={LongArrowRight(matches)}
+            autoplay={false}
+            transitionDuration={400}
+            // slidesToShow={2}
+            indicators={(i) => {
+              return (
+                <img
+                  key={images[i].id}
+                  className={classes.indicators}
+                  src={images[i].url}
+                  alt=""
+                />
+              );
+            }}
+          >
+            {images.map((item) => {
+              const { id, url } = item;
+              return (
+                <div key={id} className={classes.slide}>
                   <img
-                    style={{ height: `${matches.small ? "50%" : "100%"}` }}
+                    style={{
+                      height: `${matches.small ? "unset" : "unset"}`,
+                      width: `${matches.small ? "50%" : "70%"}`,
+                    }}
                     src={url}
                     alt=""
                   />
-                )}
-              </Media>
-            </div>
-          );
-        })}
-      </Slide>
-    </div>
+                </div>
+              );
+            })}
+          </Slide>
+        </div>
+      )}
+    </Media>
   );
 };
 

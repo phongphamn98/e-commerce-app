@@ -10,6 +10,8 @@ import {
   removeFromCart,
 } from "../../../redux/actions/productActions";
 import useStyles from "./CartItemStyles";
+import PhongDiv from "../../../General/PhongDiv";
+import { useHistory } from "react-router";
 const CartItem = ({ prod }) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(prod.qty);
@@ -19,9 +21,11 @@ const CartItem = ({ prod }) => {
     dispatch(changeQtyProduct(prod, parseInt(e.target.value)));
   };
 
-  //   useEffect(() => {
-  //     setQty(prod.qty);
-  //   }, []);
+  const history = useHistory();
+
+  const redirect = () => {
+    history.push(`/product/${prod._id}`);
+  };
 
   const classes = useStyles();
   return (
@@ -34,7 +38,13 @@ const CartItem = ({ prod }) => {
           <Grid item xs={10} sm={10} md={10} lg={10}>
             <div className={classes.info}>
               <div className={classes.nameAndPrice}>
-                <div className={classes.name}>{prod.name}</div>
+                <PhongDiv
+                  cursor="pointer"
+                  onClick={redirect}
+                  className={classes.name}
+                >
+                  {prod.name}
+                </PhongDiv>
                 <div>{formatMoney(prod.price)}₫</div>
               </div>
               <div className={classes.color}>

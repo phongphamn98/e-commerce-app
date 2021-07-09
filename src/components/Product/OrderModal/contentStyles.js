@@ -13,8 +13,7 @@ export default makeStyles((theme) => ({
     },
   },
   img: {
-    width: "50%",
-    height: "50%",
+    width: "100%",
   },
   urCartConent: {
     borderLeft: "1px solid #000",

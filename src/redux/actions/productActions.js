@@ -45,3 +45,7 @@ export const changeQtyProduct = (product, qty) => ({
     qty: qty,
   },
 });
+export const setCart = (carts) => ({
+  type: ActionTypes.SET_CART,
+  payload: carts,
+});

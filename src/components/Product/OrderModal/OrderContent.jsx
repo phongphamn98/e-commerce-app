@@ -26,10 +26,12 @@ const OrderContent = ({ product, size }) => {
           {!matches.medium ? (
             <PhongDiv display="flex">
               <PhongDiv display="flex" flexgap="1rem" flexbasis="100%">
-                <img className={classes.img} src={poster[0].url} alt="" />
-                <PhongDiv>
+                <PhongDiv flexbasis="100%">
+                  <img className={classes.img} src={poster[0].url} alt="" />
+                </PhongDiv>
+                <PhongDiv flexbasis="100%">
                   <PhongDiv
-                    fontSize="20px"
+                    fontsize="20px"
                     lineheight="18px"
                     margin="0 0 20px 0"
                     texttransform="uppercase"
@@ -50,7 +52,7 @@ const OrderContent = ({ product, size }) => {
                 flexbasis="100%"
               >
                 <PhongDiv
-                  fontSize="1.2em"
+                  fontsize="1.2em"
                   fontWeight="bold"
                   margin="0 0 15px 0"
                 >

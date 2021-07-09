@@ -19,6 +19,7 @@ import Media from "react-media";
 import OrderModal from "../OrderModal/OrderModal";
 import formatMoney from "../../../General/formatMoney";
 import { Link } from "react-router-dom";
+import NameAndPrice from "./NameAndPrice";
 
 const ProductOrderDetail = ({ product, isSticky }) => {
   const [size, setSize] = useState(0);
@@ -51,7 +52,8 @@ const ProductOrderDetail = ({ product, isSticky }) => {
     <Media
       queries={{
         medium: "(max-width: 967px)",
-        large: "(min-width: 968px)",
+        large: "(min-width: 968px) and (max-width: 1439px)",
+        xLarge: "(min-width: 1440px)",
       }}
     >
       {(matches) => (
@@ -59,16 +61,11 @@ const ProductOrderDetail = ({ product, isSticky }) => {
           className={classes.content}
           height={matches.medium ? "unset" : "100vh"}
           position={matches.medium ? "unset" : "sticky"}
+          padding={matches.xLarge ? "10px 40px" : "10px 10px"}
         >
-          <div className={classes.rating}>
-            <div className={classes.collections}>{collections}</div>
-            <div>star</div>
-          </div>
-          <Typography className={classes.title}>{name}</Typography>
-          <div className={classes.color}>
-            Cloud White / Purple Tint / Matte Gold
-          </div>
-          <div className={classes.price}>{formatMoney(price)}đ</div>
+          {matches.xLarge || matches.large ? (
+            <NameAndPrice collections={collections} name={name} price={price} />
+          ) : null}
           <div className={classes.selectSize}>chọn size</div>
           <div className={classes.sizeTable}>
             {product.size.map((item) => {
@@ -86,7 +83,7 @@ const ProductOrderDetail = ({ product, isSticky }) => {
             })}
           </div>
           {size === 1 ? (
-            <PhongDiv margin="5px 0" color="red" fontSize="14px">
+            <PhongDiv margin="5px 0" color="red" fontsize="14px">
               Vui lòng chọn size của bạn.
             </PhongDiv>
           ) : null}

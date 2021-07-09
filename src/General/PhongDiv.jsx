@@ -13,9 +13,9 @@ const useStyles = ({
   flexdirection,
   margin,
   flexgap,
-  fontSize,
+  fontsize,
   lineheight,
-  fontWeight,
+  fontweight,
   backgroundcolor,
   border,
   boxsizing,
@@ -24,6 +24,15 @@ const useStyles = ({
   flexbasis,
   texttransform,
   color,
+  textDecoration,
+  cursor,
+  bottom,
+  left,
+  top,
+  right,
+  visibility,
+  opacity,
+  transition,
 }) =>
   makeStyles((theme) => {
     return {
@@ -39,9 +48,9 @@ const useStyles = ({
         flexDirection: flexdirection,
         margin: margin,
         gap: flexgap,
-        fontSize: fontSize,
+        fontSize: fontsize,
         lineHeight: lineheight,
-        fontWeight: fontWeight,
+        fontWeight: fontweight,
         backgroundColor: backgroundcolor,
         border: border,
         boxSizing: boxsizing,
@@ -50,16 +59,25 @@ const useStyles = ({
         flexBasis: flexbasis,
         textTransform: texttransform,
         color: color,
+        textDecoration: textDecoration,
+        cursor: cursor,
+        bottom: bottom,
+        left: left,
+        top: top,
+        right: right,
+        visibility: visibility,
+        opacity: opacity,
+        transition: transition,
       },
     };
   });
 
-const PhongDiv = ({ children, ...props }) => {
+const PhongDiv = ({ children, onClick, ...props }) => {
   let { className, ...otherProps } = props;
   const classes = useStyles(props)();
   let classNames = [classes.root, className].join(" ");
   return (
-    <div className={classNames} {...otherProps}>
+    <div onClick={onClick} className={classNames}>
       {children}
     </div>
   );

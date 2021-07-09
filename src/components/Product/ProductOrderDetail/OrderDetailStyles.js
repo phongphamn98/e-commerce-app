@@ -5,9 +5,7 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     //  maxWidth: "400px",
     padding: "10px 40px",
-    position: "sticky",
     top: "64px",
-    height: "100vh",
     borderLeft: "1px solid #ebedee",
     fontFamily:
       '"Noto Sans","AdihausDIN","Helvetica",Arial,sans-serif !important',
@@ -17,15 +15,11 @@ export default makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: "36px",
+    fontSize: "26px",
     marginTop: "15px",
     letterSpacing: "1px",
-    fontStyle: "italic",
+    //  fontStyle: "italic",
     textTransform: "uppercase",
-  },
-  price: {
-    margin: "20px 0",
-    fontWeight: "bold",
   },
   selectSize: {
     textTransform: "uppercase",
@@ -81,5 +75,10 @@ export default makeStyles((theme) => ({
   },
   collections: {
     textTransform: "uppercase",
+  },
+  displayPrice: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 }));

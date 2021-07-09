@@ -1,14 +1,19 @@
 import { ActionTypes } from "../contants/action-types";
+import { useDispatch } from "react-redux";
+
+const data = localStorage.getItem("carts");
 
 export const initialState = {
   products: [],
   wishList: [],
   product: {},
-  carts: {
-    listProduct: [],
-    totalCost: 0,
-    totalItem: 0,
-  },
+  carts: data
+    ? JSON.parse(data)
+    : {
+        productList: [],
+        totalCost: 0,
+        totalItem: 0,
+      },
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -80,8 +85,6 @@ export const productReducer = (state = initialState, { type, payload }) => {
           : false
       );
 
-      console.log("incart", payload.qty);
-
       const newListCart = inCart
         ? state.carts.listProduct.map((item) =>
             item._id === payload.product._id &&
@@ -90,7 +93,6 @@ export const productReducer = (state = initialState, { type, payload }) => {
               : item
           )
         : [...state.carts.listProduct];
-      console.log("newListCart", newListCart);
       let cost = 0;
       let count = 0;
       for (let item of newListCart) {
@@ -104,6 +106,12 @@ export const productReducer = (state = initialState, { type, payload }) => {
           totalCost: cost,
           totalItem: count,
         },
+      };
+    }
+    case ActionTypes.SET_CART: {
+      return {
+        ...state,
+        carts: { ...payload },
       };
     }
     default:

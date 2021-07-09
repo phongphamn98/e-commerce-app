@@ -4,21 +4,23 @@ import { IconButton } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useStyles from "./buttonStyles";
+import PhongDiv from "./PhongDiv";
 
 const ButtonWithArrow = ({ children, ...props }) => {
   const classes = useStyles(props);
-  const { text, isBlackBackground, onClick, goTo } = props;
+  const { text, isBlackBackground, onClick, goTo, width } = props;
   let history = useHistory();
 
   const redirect = () => {
     history.push(goTo);
   };
   return (
-    <div
+    <PhongDiv
       className={
         isBlackBackground ? classes.btnOrderWithOutline : classes.btnOrder
       }
       onClick={goTo ? redirect : onClick}
+      width={width}
     >
       <span className={classes.btnText}>{text}</span>
       <IconButton className={classes.btnArrow}>
@@ -29,7 +31,7 @@ const ButtonWithArrow = ({ children, ...props }) => {
         />
       </IconButton>
       {children}
-    </div>
+    </PhongDiv>
   );
 };
 

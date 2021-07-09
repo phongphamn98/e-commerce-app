@@ -5,6 +5,7 @@ import Cart from "./components/Cart/Cart";
 import Navbar from "./components/NavBar/Navbar";
 import ProductDetail from "./components/Product/ProductDetail.jsx";
 import Products from "./components/Products/Products";
+import CheckoutFooter from "./General/CheckoutFooter";
 
 const App = () => {
   const classes = useStyles();
@@ -24,6 +25,7 @@ const App = () => {
             <Cart />
           </Route>
         </Switch>
+        <CheckoutFooter />
       </div>
     </Router>
   );

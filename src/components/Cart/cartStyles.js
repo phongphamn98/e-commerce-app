@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
   orderSummary: {
     flex: "1 1 40%",
     minWidth: "30ch",
-    gap: "2em"
+    gap: "2em",
   },
   grid: {
     display: "flex",
@@ -64,11 +64,11 @@ export default makeStyles((theme) => ({
   },
   myCart: {
     textTransform: "uppercase",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
-//   noItem: {
-//      textTransform: "uppercase",
-//      fontWeight: "bold",
-     
-//   }
+  //   noItem: {
+  //      textTransform: "uppercase",
+  //      fontWeight: "bold",
+
+  //   }
 }));

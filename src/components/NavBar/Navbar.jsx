@@ -7,26 +7,19 @@ import {
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { forEach } from "lodash";
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/commerce.png";
 import useStyles from "./navStyles";
 
 const Navbar = () => {
-  const [countCart, setCountCart] = useState(0);
   const classes = useStyles();
   const wishList = useSelector((state) => state.allProducts.wishList);
   const carts = useSelector((state) => state.allProducts.carts);
-  //   useEffect(() => {
-  //     let count = 0;
-  //     for (let item of carts.listProduct) {
-  //       count += item.qty;
-  //     }
-  //     setCountCart(count);
-  //   }, [carts.listProduct, countCart]);
+  useEffect(() => {
+    localStorage.setItem("carts", JSON.stringify(carts));
+  }, [carts]);
 
   return (
     <AppBar position="fixed" className={classes.appBar} color="inherit">
