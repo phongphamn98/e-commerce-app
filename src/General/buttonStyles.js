@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
     cursor: "pointer",
     flexGrow: 1,
     position: "relative",
+    transition: "all .7s",
     "&::before": {
       borderBottom: "1px solid black",
       borderLeft: "1px solid black",
@@ -37,12 +38,39 @@ export default makeStyles((theme) => ({
       transition: ".1s cubic-bezier(0.3, 0, 0.45, 1)",
       content: "''",
     },
-    transition: "color .1s",
+    transition: "all .1s",
     "&:hover": {
       color: "#767677",
+
       "& svg": {
         color: "#767677",
         transition: "color .1s",
+      },
+    },
+    "&:active": {
+      transform: "translate(3px, 3px)",
+      "&::after": {
+        borderTop: "0px solid black",
+        borderRight: "1px solid black",
+        height: "100%",
+        right: "0px",
+        bottom: "0px",
+        width: "3px",
+        display: "block",
+        position: "absolute",
+        transition: ".1s cubic-bezier(0.3, 0, 0.45, 1)",
+      },
+      "&::before": {
+        borderBottom: "0px solid black",
+        borderLeft: "1px solid black",
+        bottom: "0px",
+        height: "3px",
+        left: "0px",
+        width: "100%",
+        display: "block",
+        position: "absolute",
+        transition: ".1s cubic-bezier(0.3, 0, 0.45, 1)",
+        content: "''",
       },
     },
   },

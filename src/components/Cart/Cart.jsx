@@ -68,6 +68,7 @@ const Cart = () => {
                           <ButtonWithArrow
                             text="Thanh toán"
                             isBlackBackground={true}
+                            goTo="/delivery"
                           />
                         </PhongDiv>
                       )}
@@ -83,6 +84,7 @@ const Cart = () => {
                           <ButtonWithArrow
                             text="Thanh toán"
                             isBlackBackground={true}
+                            goTo="/delivery"
                           />
                         </PhongDiv>
                         <PhongDiv
@@ -180,6 +182,7 @@ const Cart = () => {
                         <ButtonWithArrow
                           text="Thanh toán"
                           isBlackBackground={true}
+                          goTo="/delivery"
                         />
                       </PhongDiv>
 

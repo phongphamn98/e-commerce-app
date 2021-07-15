@@ -7,8 +7,7 @@ export default makeStyles((theme) => ({
     padding: "10px 40px",
     top: "64px",
     borderLeft: "1px solid #ebedee",
-    fontFamily:
-      '"Noto Sans","AdihausDIN","Helvetica",Arial,sans-serif !important',
+    fontFamily: `"Noto Sans","AdihausDIN","Helvetica",Arial,sans-serif !important`,
   },
   rating: {
     display: "flex",

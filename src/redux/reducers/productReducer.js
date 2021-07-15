@@ -1,5 +1,4 @@
 import { ActionTypes } from "../contants/action-types";
-import { useDispatch } from "react-redux";
 
 const data = localStorage.getItem("carts");
 

@@ -2,7 +2,7 @@ import React from "react";
 import useStyles from "./orderSummaryStyles";
 import { Typography } from "@material-ui/core";
 import formatMoney from "../../../General/formatMoney";
-const OrderSummary = ({ carts, totalItem, totalCost }) => {
+const OrderSummary = ({ totalItem, totalCost }) => {
   const classes = useStyles();
 
   const renderListDetail = (title, detail, isBold = false) => {

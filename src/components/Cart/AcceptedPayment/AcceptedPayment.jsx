@@ -3,7 +3,7 @@ import PhongDiv from "../../../General/PhongDiv";
 
 const AcceptedPayment = () => {
   return (
-    <PhongDiv>
+    <PhongDiv margin="20px 0 0 0">
       <PhongDiv fontsize="13px" lineheight="23px" fontWeight="bold">
         PHƯƠNG THỨC THANH TOÁN ĐƯỢC CHẤP NHẬN
       </PhongDiv>

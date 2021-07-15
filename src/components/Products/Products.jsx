@@ -36,9 +36,9 @@ const Products = () => {
               className={classes.grid}
               item
               key={product._id}
-              xs={12}
+              xs={6}
               sm={6}
-              md={4}
+              md={3}
               lg={3}
             >
               <Product isChangeImage={true} product={product} />

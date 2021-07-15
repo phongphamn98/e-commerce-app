@@ -24,7 +24,7 @@ const useStyles = ({
   flexbasis,
   texttransform,
   color,
-  textDecoration,
+  textdecoration,
   cursor,
   bottom,
   left,
@@ -33,6 +33,8 @@ const useStyles = ({
   visibility,
   opacity,
   transition,
+  letterspacing,
+  minheight,
 }) =>
   makeStyles((theme) => {
     return {
@@ -59,7 +61,7 @@ const useStyles = ({
         flexBasis: flexbasis,
         textTransform: texttransform,
         color: color,
-        textDecoration: textDecoration,
+        textDecoration: textdecoration,
         cursor: cursor,
         bottom: bottom,
         left: left,
@@ -68,6 +70,8 @@ const useStyles = ({
         visibility: visibility,
         opacity: opacity,
         transition: transition,
+        letterSpacing: letterspacing,
+        minHeight: minheight,
       },
     };
   });

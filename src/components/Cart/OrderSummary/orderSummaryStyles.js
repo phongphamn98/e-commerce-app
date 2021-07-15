@@ -26,5 +26,6 @@ export default makeStyles(() => ({
   orderTitle: {
     textTransform: "uppercase",
     fontWeight: "bold",
+    fontSize: "18px",
   },
 }));

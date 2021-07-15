@@ -7,13 +7,13 @@ const CheckoutFooter = () => {
   return (
     <PhongDiv
       backgroundcolor="#363738"
-      height="84px"
+      minheight="84px"
       fontsize="12px"
       display="flex"
       flexdirection="column"
       alignitems="center"
       justifycontent="space-evenly"
-      margin="70px 0 0 0"
+      // margin="70px 0 0 0"
       // flexgap="1rem"
     >
       <PhongDiv display="flex">

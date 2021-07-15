@@ -6,9 +6,9 @@ import { useHistory } from "react-router-dom";
 import useStyles from "./buttonStyles";
 import PhongDiv from "./PhongDiv";
 
-const ButtonWithArrow = ({ children, ...props }) => {
+const ButtonWithArrow = ({ children, isBlackBackground = true, ...props }) => {
   const classes = useStyles(props);
-  const { text, isBlackBackground, onClick, goTo, width } = props;
+  const { text, onClick, goTo } = props;
   let history = useHistory();
 
   const redirect = () => {
@@ -20,7 +20,8 @@ const ButtonWithArrow = ({ children, ...props }) => {
         isBlackBackground ? classes.btnOrderWithOutline : classes.btnOrder
       }
       onClick={goTo ? redirect : onClick}
-      width={width}
+      // width={width}
+      {...props}
     >
       <span className={classes.btnText}>{text}</span>
       <IconButton className={classes.btnArrow}>

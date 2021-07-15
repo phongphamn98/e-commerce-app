@@ -9,3 +9,13 @@ export const ActionTypes = {
   CHANGE_QTY_PRODUCT: "CHANGE_QTY_PRODUCT",
   SET_CART: "SET_CART",
 };
+
+export const LoginActionTypes = {
+  SET_USER: "SET_USER",
+  ADD_USER: "ADD_USER",
+  LOGIN: "LOGIN",
+};
+
+export const paymentActionTypes = {
+  SET_PAYMENT_INFO: "SET_PAYMENT_INFO",
+};

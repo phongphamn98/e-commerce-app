@@ -18,4 +18,8 @@ export default makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  signin: {
+    cursor: "pointer",
+    marginLeft: "10px",
+  },
 }));
