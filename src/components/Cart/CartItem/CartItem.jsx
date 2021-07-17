@@ -12,6 +12,7 @@ import {
 import useStyles from "./CartItemStyles";
 import PhongDiv from "../../../General/PhongDiv";
 import { useHistory } from "react-router";
+import ContainerWithBorder from "../../../General/ContainerWithBorder";
 const CartItem = ({ prod }) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(prod.qty);
@@ -29,68 +30,70 @@ const CartItem = ({ prod }) => {
 
   const classes = useStyles();
   return (
-    <div className={classes.content}>
-      <div className={classes.image}>
-        <img alt="" src={prod.poster} />
-      </div>
-      <div className={classes.cartItemDetail}>
-        <Grid container>
-          <Grid item xs={10} sm={10} md={10} lg={10}>
-            <div className={classes.info}>
-              <div className={classes.nameAndPrice}>
-                <PhongDiv
-                  cursor="pointer"
-                  onClick={redirect}
-                  className={classes.name}
+    <ContainerWithBorder>
+      <div className={classes.content}>
+        <div className={classes.image}>
+          <img alt="" src={prod.poster} />
+        </div>
+        <div className={classes.cartItemDetail}>
+          <Grid container>
+            <Grid item xs={10} sm={10} md={10} lg={10}>
+              <div className={classes.info}>
+                <div className={classes.nameAndPrice}>
+                  <PhongDiv
+                    cursor="pointer"
+                    onClick={redirect}
+                    className={classes.name}
+                  >
+                    {prod.name}
+                  </PhongDiv>
+                  <div>{formatMoney(prod.price)}₫</div>
+                </div>
+                <div className={classes.color}>
+                  <span>Legend Ink/Red/Yellow</span>
+                </div>
+                <div className={classes.size}>Kích cỡ: {prod.size}</div>
+              </div>
+            </Grid>
+            <Grid item xs={2} sm={2} md={2} lg={2}>
+              <div className={classes.button}>
+                <IconButton
+                  onClick={() => {
+                    dispatch(removeFromCart(prod));
+                  }}
+                  className={classes.clearButton}
                 >
-                  {prod.name}
-                </PhongDiv>
-                <div>{formatMoney(prod.price)}₫</div>
+                  <ClearIcon />
+                </IconButton>
+                <IconButton>
+                  <FavoriteBorderIcon />
+                </IconButton>
               </div>
-              <div className={classes.color}>
-                <span>Non Dyed / Non Dyed / Non Dyed</span>
-              </div>
-              <div className={classes.size}>Kích cỡ: {prod.size}</div>
-            </div>
+            </Grid>
           </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={2}>
-            <div className={classes.button}>
-              <IconButton
-                onClick={() => {
-                  dispatch(removeFromCart(prod));
-                }}
-                className={classes.clearButton}
-              >
-                <ClearIcon />
-              </IconButton>
-              <IconButton>
-                <FavoriteBorderIcon />
-              </IconButton>
-            </div>
-          </Grid>
-        </Grid>
-        <div className={classes.quantity}>
-          <NativeSelect
-            id="demo-customized-select-native"
-            value={qty}
-            className={classes.selectQuantity}
-            onChange={(e) => {
-              onChangeQty(e);
-            }}
-            inputProps={{ height: "20px" }}
-            input={<BootstrapInput />}
-          >
-            {[1, 2, 3, 4, 5].map((item) => {
-              return (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              );
-            })}
-          </NativeSelect>
+          <div className={classes.quantity}>
+            <NativeSelect
+              id="demo-customized-select-native"
+              value={qty}
+              className={classes.selectQuantity}
+              onChange={(e) => {
+                onChangeQty(e);
+              }}
+              inputProps={{ height: "20px" }}
+              input={<BootstrapInput />}
+            >
+              {[1, 2, 3, 4, 5].map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </div>
         </div>
       </div>
-    </div>
+    </ContainerWithBorder>
   );
 };
 const BootstrapInput = withStyles((theme) => ({

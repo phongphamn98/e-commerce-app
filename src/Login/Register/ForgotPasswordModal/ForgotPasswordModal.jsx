@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Media from "react-media";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import { Backdrop, Fade, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import PhongDiv from "./../../../General/PhongDiv";

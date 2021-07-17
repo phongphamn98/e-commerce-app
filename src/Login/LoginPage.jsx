@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import Media from "react-media";
 import { AuthProvider } from "../Context/AuthContext";
-import ButtonWithArrow from "../General/ButtonWithArrow";
+import ButtonArrow from "../General/ButtonArrow";
 import PhongDiv from "../General/PhongDiv";
 import LoginForm from "./LoginForm";
 
@@ -58,7 +58,7 @@ const LoginPage = () => {
                     <span>{item}</span>
                   </PhongDiv>
                 ))}
-                <ButtonWithArrow
+                <ButtonArrow
                   goTo="/register"
                   width={matches.large ? "30%" : "unset"}
                   text="Đăng kí"

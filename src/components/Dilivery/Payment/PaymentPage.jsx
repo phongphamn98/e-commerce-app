@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import ProductInCart from "../OrderDetails/ProductInCart";
 import AcceptedPayment from "../../Cart/AcceptedPayment/AcceptedPayment";
 import DeliveryInfo from "./DeliveryInfo";
+import ContainerWithBorder from "../../../General/ContainerWithBorder";
 
 const PaymentPage = () => {
   const { paymentInfo } = usePayment();
@@ -46,26 +47,26 @@ const PaymentPage = () => {
                     Tất cả giao dịch đều an toàn và bảo mật
                   </PhongDiv>
                   <Divider
-                    style={{ backgroundColor: "black", marginBottom: "10px" }}
+                    style={{ backgroundColor: "#767677", marginBottom: "10px" }}
                   />
                   <PhongTreeview />
                 </PhongDiv>
                 {matches.medium && (
                   <Divider
-                    style={{ backgroundColor: "black", marginTop: "30px" }}
+                    style={{ backgroundColor: "#767677", marginTop: "30px" }}
                   />
                 )}
               </Grid>
               <Grid item xs={12} sm={12} md={4} lg={4}>
-                <OrderSummary totalCost={totalCost} totalItem={totalItem} />
-                <PhongDiv
-                  padding="10px"
-                  border="1px solid #eceff1"
-                  margin="20px 0 0 0"
-                >
+                <ContainerWithBorder>
+                  <OrderSummary totalCost={totalCost} totalItem={totalItem} />
+                </ContainerWithBorder>
+                <ContainerWithBorder>
                   <ProductInCart products={listProduct} />
-                </PhongDiv>
-                <DeliveryInfo info={paymentInfo} />
+                </ContainerWithBorder>
+                <ContainerWithBorder>
+                  <DeliveryInfo info={paymentInfo} />
+                </ContainerWithBorder>
                 <AcceptedPayment />
               </Grid>
             </Grid>

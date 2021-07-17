@@ -1,7 +1,7 @@
 import React from "react";
 import PhongDiv from "../../../General/PhongDiv";
 import { Typography } from "@material-ui/core";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import useStyles from "./cartNoItemStyles";
 
 const CartNoItem = ({ matches }) => {
@@ -19,7 +19,7 @@ const CartNoItem = ({ matches }) => {
         started?
       </PhongDiv>
       <PhongDiv width={"50%"}>
-        <ButtonWithArrow goTo="/" text="Get started" isBlackBackground={true} />
+        <ButtonArrow goTo="/" text="Get started" isBlackBackground={true} />
       </PhongDiv>
     </PhongDiv>
   );

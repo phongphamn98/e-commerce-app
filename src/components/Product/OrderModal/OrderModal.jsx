@@ -1,7 +1,7 @@
 import { Backdrop, Fade, Modal } from "@material-ui/core";
 import React, { useState } from "react";
 import Media from "react-media";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import OrderContent from "./OrderContent";
 import useStyles from "./orderModalStyles";
 const OrderModal = ({ addProductToCart, product, size, handleSize }) => {
@@ -23,7 +23,7 @@ const OrderModal = ({ addProductToCart, product, size, handleSize }) => {
     >
       {(matches) => (
         <React.Fragment>
-          <ButtonWithArrow
+          <ButtonArrow
             width={matches.xLarge ? "100%" : "70%"}
             onClick={() => {
               if (size !== 0 && size !== 1) {

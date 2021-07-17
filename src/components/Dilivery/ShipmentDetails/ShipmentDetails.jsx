@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import PhongDiv from "../../../General/PhongDiv";
 import { makeStyles } from "@material-ui/styles";
 import Select from "react-select";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import { useAuth } from "../../../Context/AuthContext";
 import PhongModal from "../../../General/PhongModal";
 import LoginForm from "../../../Login/LoginForm";
@@ -36,12 +36,6 @@ const useStyles = makeStyles(() => ({
     fontSize: "14px",
     paddingLeft: "20px",
   },
-  payment: {
-    "&:hover": {
-      backgroundColor: "black",
-      color: "white",
-    },
-  },
 }));
 
 const options = [
@@ -52,28 +46,26 @@ const options = [
 
 const ShipmentDetails = ({ currentUser, matches }) => {
   const classes = useStyles();
-  const [country, setCountry] = useState("");
-  const [region, setRegion] = useState("");
-  const [open, setOpen] = useState(false);
-  const { getValues, handleSubmit, control, errors } = useForm();
+  const {
+    getValues,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const { savePaymentInfo } = usePayment();
   const history = useHistory();
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const onSubmit = async () => {
     const values = getValues();
+    let info = { ...values };
     try {
       if (currentUser) {
-        const info = { ...values, email: currentUser.email };
+        info.email = currentUser.email;
         await savePaymentInfo(info);
       } else {
-        await savePaymentInfo(values);
+        await savePaymentInfo(info);
       }
+      localStorage.setItem("canPayment", true);
       history.push("/payment");
     } catch {
       console.log("looix rooif ban oiw");
@@ -84,31 +76,6 @@ const ShipmentDetails = ({ currentUser, matches }) => {
 
   return (
     <PhongDiv className={classes.shipmentDetails}>
-      {!currentUser && (
-        <PhongDiv margin="0 0 30px 0">
-          <PhongDiv
-            fontsize="12px"
-            padding="2px"
-            display="inline-block"
-            transition="all .1s"
-            fontweight="bold"
-            textdecoration="underline"
-            cursor="pointer"
-            letterspacing="3px"
-            texttransform="uppercase"
-            className={classes.payment}
-            onClick={handleOpen}
-          >
-            Đăng nhập và thanh toán nhanh hơn
-          </PhongDiv>
-          <PhongModal
-            children={<LoginForm closeModal={handleClose} redirect={false} />}
-            handleClose={handleClose}
-            open={open}
-          />
-        </PhongDiv>
-      )}
-
       <PhongDiv fontsize="26px" fontweight="bold" texttransform="uppercase">
         Thông tin giao hàng
       </PhongDiv>
@@ -116,7 +83,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
         Chúng tôi sẽ sử dụng các thông tin chi tiết này để thông báo cho bạn về
         giao hàng.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} id="nameform">
         <Grid container spacing={3}>
           <Grid item md={6} sm={6} xs={12}>
             <PhongDiv>
@@ -124,6 +91,12 @@ const ShipmentDetails = ({ currentUser, matches }) => {
                 control={control}
                 name={"firstName"}
                 defaultValue=""
+                rules={{
+                  minLength: {
+                    value: 5,
+                    message: "duma lo mà điền vào đây, không bố đấm mày",
+                  },
+                }}
                 render={({ field: { onChange, value } }) => (
                   <TextField
                     required
@@ -134,9 +107,16 @@ const ShipmentDetails = ({ currentUser, matches }) => {
                   />
                 )}
               />
-              <FormHelperText className={classes.heplerText}>
-                Vui lòng điền đầy đủ họ và tên
-              </FormHelperText>
+              {errors.firstName?.message ? (
+                <FormHelperText error className={classes.heplerText}>
+                  {errors.firstName.message}
+                </FormHelperText>
+              ) : (
+                <FormHelperText className={classes.heplerText}>
+                  Vui lòng điền đầy đủ họ và tên
+                </FormHelperText>
+              )}
+
               {/* <input type="submit" /> */}
             </PhongDiv>
           </Grid>
@@ -247,7 +227,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             </PhongDiv>
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
-            <PhongDiv width="50%">
+            <PhongDiv width={!matches.medium ? "48.5%" : "100%"}>
               {!currentUser ? (
                 <React.Fragment>
                   {" "}
@@ -310,16 +290,14 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             </PhongDiv>
           </Grid>
         </Grid>
-      </form>
-      <div>
-        <ButtonWithArrow
-          width={!matches.medium ? "50%" : "unset"}
+
+        <ButtonArrow
+          width={!matches.medium ? "48%" : "unset"}
+          type="submit"
           margin="30px 0 20px 0"
           text="Xem lại và thanh toán"
-          onClick={onSubmit}
-          isBlackBackground={true}
         />
-      </div>
+      </form>
     </PhongDiv>
   );
 };

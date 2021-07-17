@@ -6,7 +6,7 @@ import Media from "react-media";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import ButtonWithArrow from "../../General/ButtonWithArrow";
+import ButtonArrow from "../../General/ButtonArrow";
 import PhongDiv from "../../General/PhongDiv";
 import { userLogin } from "../../redux/actions/loginActions";
 
@@ -155,7 +155,7 @@ const RegisterForm = () => {
                 )}
               />
               <input type="submit" style={{ display: "none" }} />
-              <ButtonWithArrow
+              <ButtonArrow
                 onClick={() => {
                   const values = getValues();
                   //kiểm tra xem thằng này có trong users hay chưa?
@@ -165,7 +165,7 @@ const RegisterForm = () => {
                 text="Đăng kí"
                 width="40%"
                 isBlackBackground={true}
-              ></ButtonWithArrow>
+              ></ButtonArrow>
             </PhongDiv>
           </form>
         </PhongDiv>

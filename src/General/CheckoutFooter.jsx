@@ -13,7 +13,7 @@ const CheckoutFooter = () => {
       flexdirection="column"
       alignitems="center"
       justifycontent="space-evenly"
-      // margin="70px 0 0 0"
+      margin="30px 0 0 0"
       // flexgap="1rem"
     >
       <PhongDiv display="flex">

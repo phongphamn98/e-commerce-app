@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import useStyles from "./buttonStyles";
 import PhongDiv from "./PhongDiv";
 
-const ButtonWithArrow = ({ children, isBlackBackground = true, ...props }) => {
+const ButtonArrow = ({ children, isBlackBackground = true, ...props }) => {
   const classes = useStyles(props);
   const { text, onClick, goTo } = props;
   let history = useHistory();
@@ -36,4 +36,4 @@ const ButtonWithArrow = ({ children, isBlackBackground = true, ...props }) => {
   );
 };
 
-export default ButtonWithArrow;
+export default ButtonArrow;

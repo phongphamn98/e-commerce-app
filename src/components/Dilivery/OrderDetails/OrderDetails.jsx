@@ -2,6 +2,7 @@ import { Divider } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "../../../Context/AuthContext";
+import ContainerWithBorder from "../../../General/ContainerWithBorder";
 import PhongDiv from "../../../General/PhongDiv";
 import LoginForm from "../../../Login/LoginForm";
 import AcceptedPayment from "../../Cart/AcceptedPayment/AcceptedPayment";
@@ -23,12 +24,12 @@ const OrderDetails = ({ currentUser }) => {
         </PhongDiv>
       )}
 
-      <PhongDiv>
+      <ContainerWithBorder>
         <OrderSummary totalItem={totalItem} totalCost={totalCost} />
-      </PhongDiv>
-      <Divider style={{ margin: "40px 0" }} />
-      <ProductInCart products={listProduct} />
-      <Divider style={{ margin: "40px 0" }} />
+      </ContainerWithBorder>
+      <ContainerWithBorder>
+        <ProductInCart products={listProduct} />
+      </ContainerWithBorder>
     </PhongDiv>
   );
 };

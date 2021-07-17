@@ -8,7 +8,7 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import PaymentByCredit from "../components/Dilivery/Payment/PaymentByCredit";
-import ButtonWithArrow from "./ButtonWithArrow";
+import ButtonArrow from "./ButtonArrow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBillAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -85,7 +85,7 @@ const PhongTreeview = () => {
           <PaymentByCredit />
         </PhongDiv>
         <Divider
-          style={{ backgroundColor: "black", margin: "10px 0 10px 0" }}
+          style={{ backgroundColor: "#767677", margin: "10px 0 10px 0" }}
         />
         <PhongDiv
           display="flex"
@@ -115,8 +115,8 @@ const PhongTreeview = () => {
           </PhongDiv>
         </PhongDiv>
       </RadioGroup>
-
-      <ButtonWithArrow margin="30px 0 0 0" text="Đặt hàng" />
+      <Divider style={{ backgroundColor: "#767677", marginTop: "10px" }} />
+      <ButtonArrow margin="30px 0 0 0" text="Đặt hàng" />
     </React.Fragment>
   );
 };

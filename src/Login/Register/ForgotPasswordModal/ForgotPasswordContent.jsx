@@ -3,7 +3,7 @@ import Media from "react-media";
 import PhongDiv from "./../../../General/PhongDiv";
 import { makeStyles, TextField } from "@material-ui/core";
 import { Controller, useForm } from "react-hook-form";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import { useAuth } from "../../../Context/AuthContext";
 // import { Alert } from "@material-ui/lab";
 // import { Alert, AlertTitle } from "@material-ui/lab";
@@ -102,7 +102,7 @@ const ForgotPasswordContent = ({ email }) => {
             )}
           />
 
-          <ButtonWithArrow
+          <ButtonArrow
             width="240px"
             margin="30px 0 0 0"
             text="Đặt lại mật khẩu"

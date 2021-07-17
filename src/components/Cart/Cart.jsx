@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import Media from "react-media";
 import { useSelector } from "react-redux";
-import ButtonWithArrow from "../../General/ButtonWithArrow";
+import ButtonArrow from "../../General/ButtonArrow";
 import formatMoney from "../../General/formatMoney";
 import PhongDiv from "../../General/PhongDiv";
 import AcceptedPayment from "./AcceptedPayment/AcceptedPayment";
@@ -15,6 +15,7 @@ import {
   faMoneyCheckAlt,
   faShippingFast,
 } from "@fortawesome/free-solid-svg-icons";
+import ContainerWithBorder from "../../General/ContainerWithBorder";
 
 const Cart = () => {
   const carts = useSelector((state) => state.allProducts.carts);
@@ -65,7 +66,7 @@ const Cart = () => {
                       </PhongDiv>
                       {!matches.large && (
                         <PhongDiv width={"45%"}>
-                          <ButtonWithArrow
+                          <ButtonArrow
                             text="Thanh toán"
                             isBlackBackground={true}
                             goTo="/delivery"
@@ -81,7 +82,7 @@ const Cart = () => {
                     {matches.large && (
                       <>
                         <PhongDiv margin="30px 0" width="50%">
-                          <ButtonWithArrow
+                          <ButtonArrow
                             text="Thanh toán"
                             isBlackBackground={true}
                             goTo="/delivery"
@@ -114,7 +115,7 @@ const Cart = () => {
                             cursor="pointer"
                           >
                             <FontAwesomeIcon
-                              fontsize="30px"
+                              fontSize="30px"
                               icon={faMoneyCheckAlt}
                             />
                             <span>Trả hàng dễ dàng</span>
@@ -179,18 +180,19 @@ const Cart = () => {
                         </PhongDiv>
                       )}
                       <PhongDiv>
-                        <ButtonWithArrow
+                        <ButtonArrow
                           text="Thanh toán"
                           isBlackBackground={true}
                           goTo="/delivery"
                         />
                       </PhongDiv>
-
-                      <OrderSummary
-                        totalItem={totalItem}
-                        totalCost={totalCost}
-                        carts={carts}
-                      />
+                      <ContainerWithBorder>
+                        <OrderSummary
+                          totalItem={totalItem}
+                          totalCost={totalCost}
+                          carts={carts}
+                        />
+                      </ContainerWithBorder>
                     </PhongDiv>
                     <AcceptedPayment />
                   </React.Fragment>

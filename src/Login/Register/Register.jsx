@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Media from "react-media";
 import { AuthProvider } from "../../Context/AuthContext";
-import ButtonWithArrow from "../../General/ButtonWithArrow";
+import ButtonArrow from "../../General/ButtonArrow";
 import PhongDiv from "../../General/PhongDiv";
 import RegisterForm from "./RegisterForm";
 
@@ -51,7 +51,7 @@ const Register = () => {
                 <span>{item}</span>
               </PhongDiv>
             ))}
-            <ButtonWithArrow
+            <ButtonArrow
               goTo="/login"
               width={"30%"}
               text="Đăng nhập"

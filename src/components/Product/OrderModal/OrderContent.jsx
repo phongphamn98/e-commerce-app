@@ -1,7 +1,7 @@
 import React from "react";
 import Media from "react-media";
 import { useSelector } from "react-redux";
-import ButtonWithArrow from "../../../General/ButtonWithArrow";
+import ButtonArrow from "../../../General/ButtonArrow";
 import formatMoney from "../../../General/formatMoney";
 import PhongDiv from "../../../General/PhongDiv";
 import useStyles from "./contentStyles";
@@ -88,13 +88,14 @@ const OrderContent = ({ product, size }) => {
                   flexdirection="column"
                   flexgap="1em"
                 >
-                  <ButtonWithArrow
+                  <ButtonArrow
                     goTo="/cart"
                     text="Xem lại giỏ hàng"
                     isBlackBackground={true}
-                  ></ButtonWithArrow>
-                  <ButtonWithArrow
+                  ></ButtonArrow>
+                  <ButtonArrow
                     text="Thanh toán"
+                    goTo="/delivery"
                     isBlackBackground={false}
                   />
                 </PhongDiv>
@@ -108,12 +109,12 @@ const OrderContent = ({ product, size }) => {
                 flexdirection="column"
                 flexgap="1em"
               >
-                <ButtonWithArrow
+                <ButtonArrow
                   goTo="/cart"
                   text="Xem lại giỏ hàng"
                   isBlackBackground={true}
-                ></ButtonWithArrow>
-                <ButtonWithArrow text="Thanh toán" isBlackBackground={false} />
+                ></ButtonArrow>
+                <ButtonArrow text="Thanh toán" isBlackBackground={false} />
               </PhongDiv>
             </PhongDiv>
           )}

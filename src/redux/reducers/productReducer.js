@@ -9,7 +9,7 @@ export const initialState = {
   carts: data
     ? JSON.parse(data)
     : {
-        productList: [],
+        listProduct: [],
         totalCost: 0,
         totalItem: 0,
       },

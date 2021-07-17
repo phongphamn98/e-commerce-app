@@ -22,7 +22,9 @@ const Navbar = () => {
   const { logout, currentUser } = useAuth();
   const history = useHistory();
   useEffect(() => {
-    localStorage.setItem("carts", JSON.stringify(carts));
+    if (carts.listProduct.length === 0) {
+      localStorage.removeItem("carts");
+    } else localStorage.setItem("carts", JSON.stringify(carts));
   }, [carts]);
 
   const handleLogout = async () => {
@@ -57,7 +59,7 @@ const Navbar = () => {
           <span className={classes.signin} onClick={handleLogout}>
             {currentUser ? `Đăng xuất` : "Đăng nhập"}
           </span>
-          {/* <ButtonWithArrow
+          {/* <ButtonArrow
             text={currentUser ? "Logout" : "Login"}
             isBlackBackground={true}
             onClick={handleLogout}

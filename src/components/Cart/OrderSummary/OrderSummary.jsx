@@ -19,7 +19,7 @@ const OrderSummary = ({ totalItem, totalCost }) => {
   };
 
   return (
-    <div className={classes.content}>
+    <div>
       <Typography className={classes.orderTitle} variant="h5">
         tóm tắt đơn hàng
       </Typography>

@@ -9,7 +9,10 @@ const ProductInCart = ({ products }) => {
         Chi tiết về đơn hàng
       </PhongDiv>
       {products.map((product) => (
-        <OrderSingleProduct key={product._id} product={product} />
+        <OrderSingleProduct
+          key={product._id + product.size}
+          product={product}
+        />
       ))}
     </PhongDiv>
   );

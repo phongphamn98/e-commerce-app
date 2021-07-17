@@ -21,7 +21,7 @@ const DeliveryInfo = ({ info }) => {
   };
 
   return (
-    <PhongDiv margin="20px 0 0 0" padding="10px" border="1px solid #eceff1">
+    <PhongDiv>
       <PhongDiv
         margin="0 0 15px 0"
         fontsize="18px"

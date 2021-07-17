@@ -2,10 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   content: {
-    border: "1px solid black",
-    height: "267px",
+    //  border: "1px solid black",
+    //  height: "267px",
+    padding: "10px",
     display: "flex",
-    marginTop: "30px",
+    //  marginTop: "30px",
   },
   cartItemDetail: {
     display: "flex",
@@ -36,6 +37,7 @@ export default makeStyles(() => ({
   name: {
     textTransform: "uppercase",
     lineHeight: "24px",
+    fontWeight: "bold",
   },
   color: {
     textTransform: "uppercase",

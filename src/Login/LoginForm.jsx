@@ -6,7 +6,7 @@ import Media from "react-media";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-import ButtonWithArrow from "../General/ButtonWithArrow";
+import ButtonArrow from "../General/ButtonArrow";
 import PhongDiv from "../General/PhongDiv";
 import ForgotPasswordModal from "./Register/ForgotPasswordModal/ForgotPasswordModal";
 
@@ -122,7 +122,7 @@ const LoginForm = ({ redirect = true, closeModal }) => {
                 )}
               />
               <input type="submit" style={{ display: "none" }} />
-              <ButtonWithArrow
+              <ButtonArrow
                 width={!redirect ? "unset" : matches.large ? "40%" : "unset"}
                 onClick={() => {
                   const values = getValues();

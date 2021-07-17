@@ -35,6 +35,8 @@ const useStyles = ({
   transition,
   letterspacing,
   minheight,
+  borderbottom,
+  zindex,
 }) =>
   makeStyles((theme) => {
     return {
@@ -72,6 +74,8 @@ const useStyles = ({
         transition: transition,
         letterSpacing: letterspacing,
         minHeight: minheight,
+        borderBottom: borderbottom,
+        zIndex: zindex,
       },
     };
   });
