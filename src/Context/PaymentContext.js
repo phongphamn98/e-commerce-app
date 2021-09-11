@@ -14,7 +14,7 @@ const PaymentProvider = ({ children }) => {
     setPaymentInfo(info);
   };
 
-  const value = { paymentInfo, savePaymentInfo };
+  const value = { paymentInfo, savePaymentInfo, setPaymentInfo };
 
   return (
     <PaymentContext.Provider value={value}>{children}</PaymentContext.Provider>

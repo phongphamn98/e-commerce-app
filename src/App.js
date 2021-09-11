@@ -1,27 +1,25 @@
 import React from "react";
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch,
-  Redirect,
 } from "react-router-dom";
 import useStyles from "./appStyles";
 import Cart from "./components/Cart/Cart";
+import Delivery from "./components/Dilivery/Delivery";
+import PaymentPage from "./components/Dilivery/Payment/PaymentPage";
+import StepsNav from "./components/Dilivery/StepsNav";
 import Navbar from "./components/NavBar/Navbar";
 import ProductDetail from "./components/Product/ProductDetail.jsx";
 import Products from "./components/Products/Products";
-import CheckoutFooter from "./General/CheckoutFooter";
-import Register from "./Login/Register/Register";
-import LoginPage from "./Login/LoginPage";
+import ViewPDF from "./components/ViewPDF";
 import { AuthProvider } from "./Context/AuthContext";
-import Delivery from "./components/Dilivery/Delivery";
+import PaymentProvider from "./Context/PaymentContext";
+import CheckoutFooter from "./General/CheckoutFooter";
+import LoginPage from "./Login/LoginPage";
+import Register from "./Login/Register/Register";
 import ScrollToTop from "./ScrollToTop";
-import PaymentProvider, { usePayment } from "./Context/PaymentContext";
-import PaymentPage from "./components/Dilivery/Payment/PaymentPage";
-import PhongDiv from "./General/PhongDiv";
-import StepsNav from "./components/Dilivery/StepsNav";
-import { Wizard, Steps, Step } from "react-albus";
-import StepWizard from "./components/Dilivery/StepWizard";
 
 const App = () => {
   const classes = useStyles();
@@ -45,6 +43,7 @@ const App = () => {
               </Route>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/pdf" component={ViewPDF} />
               <PaymentProvider>
                 <StepsNav />
                 <Route
@@ -62,7 +61,7 @@ const App = () => {
                   exact
                   path="/payment"
                   render={() => {
-                    return localStorage.getItem("canPayment") ? (
+                    return sessionStorage.getItem("canPayment") ? (
                       <PaymentPage />
                     ) : localStorage.getItem("carts") ? (
                       <Delivery />

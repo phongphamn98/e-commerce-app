@@ -1,15 +1,11 @@
 import { FormHelperText, Grid, TextField } from "@material-ui/core";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import PhongDiv from "../../../General/PhongDiv";
 import { makeStyles } from "@material-ui/styles";
-import Select from "react-select";
-import ButtonArrow from "../../../General/ButtonArrow";
-import { useAuth } from "../../../Context/AuthContext";
-import PhongModal from "../../../General/PhongModal";
-import LoginForm from "../../../Login/LoginForm";
-import { usePayment } from "../../../Context/PaymentContext";
+import React, { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { usePayment } from "../../../Context/PaymentContext";
+import ButtonArrow from "../../../General/ButtonArrow";
+import PhongDiv from "../../../General/PhongDiv";
 
 const useStyles = makeStyles(() => ({
   shipmentDetails: {
@@ -37,6 +33,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: "20px",
   },
 }));
+const savedInfo = JSON.parse(sessionStorage.getItem("canPayment"));
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -54,6 +51,8 @@ const ShipmentDetails = ({ currentUser, matches }) => {
   } = useForm();
   const { savePaymentInfo } = usePayment();
   const history = useHistory();
+  //   const [currentInfo, setCurrentInfo] = useState(savedInfo);
+  const currentInfo = JSON.parse(sessionStorage.getItem("canPayment"));
 
   const onSubmit = async () => {
     const values = getValues();
@@ -65,14 +64,12 @@ const ShipmentDetails = ({ currentUser, matches }) => {
       } else {
         await savePaymentInfo(info);
       }
-      localStorage.setItem("canPayment", true);
+      sessionStorage.setItem("canPayment", JSON.stringify(info));
       history.push("/payment");
     } catch {
       console.log("looix rooif ban oiw");
     }
   };
-
-  console.log("errors", errors);
 
   return (
     <PhongDiv className={classes.shipmentDetails}>
@@ -89,21 +86,14 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <PhongDiv>
               <Controller
                 control={control}
-                name={"firstName"}
-                defaultValue=""
-                rules={{
-                  minLength: {
-                    value: 5,
-                    message: "duma lo mà điền vào đây, không bố đấm mày",
-                  },
-                }}
-                render={({ field: { onChange, value } }) => (
+                name="firstName"
+                defaultValue={currentInfo.firstName}
+                render={({ field }) => (
                   <TextField
-                    required
-                    label="Tên"
-                    value={value}
-                    onChange={onChange}
                     variant="outlined"
+                    label="Tên"
+                    required
+                    {...field}
                   />
                 )}
               />
@@ -116,15 +106,13 @@ const ShipmentDetails = ({ currentUser, matches }) => {
                   Vui lòng điền đầy đủ họ và tên
                 </FormHelperText>
               )}
-
-              {/* <input type="submit" /> */}
             </PhongDiv>
           </Grid>
           <Grid item md={6} sm={6} xs={12}>
             <Controller
               control={control}
               name={"lastName"}
-              defaultValue=""
+              defaultValue={currentInfo.lastName}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   required
@@ -140,7 +128,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <Controller
               control={control}
               name={"street"}
-              defaultValue=""
+              defaultValue={currentInfo.street}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   required
@@ -159,7 +147,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <Controller
               control={control}
               name={"floor"}
-              defaultValue=""
+              defaultValue={currentInfo.floor}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   label="Số Tòa Nhà/Số Tầng"
@@ -177,7 +165,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <Controller
               control={control}
               name={"province"}
-              defaultValue=""
+              defaultValue={currentInfo.province}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   label="Thành Phố/Tỉnh"
@@ -192,7 +180,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <Controller
               control={control}
               name={"distric"}
-              defaultValue=""
+              defaultValue={currentInfo.distric}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   label="Quận"
@@ -207,7 +195,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <Controller
               control={control}
               name={"ward"}
-              defaultValue=""
+              defaultValue={currentInfo.ward}
               render={({ field: { onChange, value } }) => (
                 <TextField
                   label="Phường"
@@ -230,11 +218,10 @@ const ShipmentDetails = ({ currentUser, matches }) => {
             <PhongDiv width={!matches.medium ? "48.5%" : "100%"}>
               {!currentUser ? (
                 <React.Fragment>
-                  {" "}
                   <Controller
                     control={control}
                     name={"email"}
-                    defaultValue=""
+                    defaultValue={currentInfo.email}
                     render={({ field: { onChange, value } }) => (
                       <TextField
                         required
@@ -263,7 +250,7 @@ const ShipmentDetails = ({ currentUser, matches }) => {
               <Controller
                 control={control}
                 name={"phoneNumber"}
-                defaultValue=""
+                defaultValue={currentInfo.phoneNumber}
                 rules={{
                   minLength: {
                     value: 10,
@@ -281,16 +268,13 @@ const ShipmentDetails = ({ currentUser, matches }) => {
                   />
                 )}
               />
-              {/* {errors.phoneNumber?.message && (
-                <p>{errors.phoneNumber?.message}</p>
-              )} */}
+
               <FormHelperText className={classes.heplerText}>
                 Ví dụ: 0123456789
               </FormHelperText>
             </PhongDiv>
           </Grid>
         </Grid>
-
         <ButtonArrow
           width={!matches.medium ? "48%" : "unset"}
           type="submit"

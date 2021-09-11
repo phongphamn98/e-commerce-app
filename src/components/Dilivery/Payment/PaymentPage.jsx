@@ -1,5 +1,5 @@
 import { Divider, Grid } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import Media from "react-media";
 import { usePayment } from "../../../Context/PaymentContext";
 import PhongDiv from "../../../General/PhongDiv";
@@ -12,10 +12,13 @@ import DeliveryInfo from "./DeliveryInfo";
 import ContainerWithBorder from "../../../General/ContainerWithBorder";
 
 const PaymentPage = () => {
-  const { paymentInfo } = usePayment();
+  const { paymentInfo, setPaymentInfo } = usePayment();
   const carts = useSelector((state) => state.allProducts.carts);
   const { totalItem, totalCost, listProduct } = carts;
-  console.log("paymentInfo", paymentInfo);
+  useEffect(() => {
+    let info = JSON.parse(sessionStorage.getItem("canPayment"));
+    setPaymentInfo(info);
+  }, []);
   return (
     <Media
       queries={{

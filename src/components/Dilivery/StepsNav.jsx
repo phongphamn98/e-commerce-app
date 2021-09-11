@@ -5,6 +5,7 @@ import Media from "react-media";
 import PhongDiv from "../../General/PhongDiv";
 import { WithWizard } from "react-albus";
 import { useHistory, useLocation } from "react-router-dom";
+import { LocalTaxiOutlined } from "@material-ui/icons";
 const steps = [
   { id: 1, name: "Giỏ hàng", goTo: "/cart" },
   { id: 2, name: "thanh toán", goTo: "/delivery" },
@@ -34,10 +35,14 @@ const StepsNav = () => {
   const location = useLocation();
   //   console.log("location", location.pathname);
   const [activeTab, setActiveTab] = useState(location.pathname);
+  const [currentStep, setCurrentStep] = useState(0);
   useEffect(() => {
     setActiveTab(location.pathname);
+    const tab = steps.find((step) => step.goTo === location.pathname);
+    setCurrentStep(tab.id);
   }, [location]);
   const step = (stepNum, title, goTo, isActive = false) => {
+    let canTouch = stepNum > currentStep ? "#767677" : "black";
     return (
       <PhongDiv
         padding="16px 0"
@@ -47,10 +52,12 @@ const StepsNav = () => {
         flexgap="0.5rem"
         zindex={1}
         borderbottom={isActive ? "1px solid black" : "0"}
-        cursor="pointer"
+        cursor={!(stepNum > currentStep) ? "pointer" : false}
         onClick={() => {
-          setActiveTab(goTo);
-          history.push(goTo);
+          if (!(stepNum > currentStep)) {
+            setActiveTab(goTo);
+            history.push(goTo);
+          }
         }}
       >
         <div
@@ -61,7 +68,7 @@ const StepsNav = () => {
             color: "white",
             fontWeight: "bold",
             borderRadius: "50%",
-            backgroundColor: "#000",
+            backgroundColor: canTouch,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -74,6 +81,7 @@ const StepsNav = () => {
           letterspacing="2px"
           fontweight="bold"
           texttransform="uppercase"
+          color={canTouch}
         >
           {title}
         </PhongDiv>
